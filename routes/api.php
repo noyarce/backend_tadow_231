@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PokemonController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -16,4 +17,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+Route::prefix('/tst')->group(function () use ($router) {
+    $router->post('posteo', [PokemonController::class, 'createPokemon']);
+    $router->get('all',[PokemonController::class, 'listarPokemones']);
+   
 });
