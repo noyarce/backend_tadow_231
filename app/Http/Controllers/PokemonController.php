@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PokemonRequest;
 use App\Models\Pokemon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
 class PokemonController extends Controller
 {
-    public function createPokemon(Request $request){
+    public function createPokemon(PokemonRequest $request){
         Log::info(["REquest"=>$request->all()]);
 
         $pokemon = new Pokemon();

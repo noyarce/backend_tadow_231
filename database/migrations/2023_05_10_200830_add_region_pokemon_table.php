@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('pokemon', function (Blueprint $table) {
-            $table->unsignedBigInteger('region_id');
+            $table->unsignedBigInteger('region_id')->nullable();
             $table->foreign('region_id')->references('id')->on('regions');
         });
     }
@@ -26,6 +26,8 @@ return new class extends Migration
      */
     public function down()
     {
-        //
+         Schema::table('pokemon', function (Blueprint $table) {
+            $table->dropForeign('region_id');
+        });
     }
 };
