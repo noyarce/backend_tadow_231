@@ -26,7 +26,7 @@ return new class extends Migration
      */
     public function down()
     {
-         Schema::table('pokemon', function (Blueprint $table) {
+        Schema::table('pokemon', function (Blueprint $table) {
             $table->dropForeign('region_id');
         });
     }
