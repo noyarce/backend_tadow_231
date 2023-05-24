@@ -19,8 +19,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::prefix('/tst')->group(function () use ($router) {
-    $router->post('posteo', [PokemonController::class, 'createPokemon']);
-    $router->get('all',[PokemonController::class, 'listarPokemones']);
-   
+Route::prefix('/pokemon')->group(function () use ($router) {
+    $router->post('registrar', [PokemonController::class, 'createPokemon']);
+    $router->get('listar',[PokemonController::class, 'listarPokemones']);
+});
+
+Route::prefix('/region')->group(function () use ($router) {
+  
 });
