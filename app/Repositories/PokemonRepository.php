@@ -6,8 +6,7 @@ use App\Models\Pokemon;
 use Exception;
 use Illuminate\Http\Response;
 
-class PokemonRepository
-{
+class PokemonRepository{
     public function registrarPokemon($request)
     {
         try {
@@ -15,6 +14,7 @@ class PokemonRepository
             $pokemon->nombre = $request->nombre;
             $pokemon->foto = $request->foto;
             $pokemon->save();
+
             return response()->json(["pokemon" => $pokemon], Response::HTTP_OK);
         } catch (Exception $e) {
             return response()->json(["error" => $e->getMessage()], Response::HTTP_BAD_REQUEST);
@@ -24,6 +24,6 @@ class PokemonRepository
     public function listarPokemones($request)
     {
         $pokemon = Pokemon::all();
-        return $pokemon;
+        return response()->json(["pokemon" => $pokemon], Response::HTTP_OK);
     }
 }
