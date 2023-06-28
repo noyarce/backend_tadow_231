@@ -13,7 +13,7 @@ class Pokemon extends Model
     public $incrementing = true;
 
 
-public function region()
+    public function region()
     {
         return $this->belongsTo(Region::class, 'region_id');
     } 

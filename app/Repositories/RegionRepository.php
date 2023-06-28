@@ -12,7 +12,7 @@ class RegionRepository
     {
         try {
             $region = Region::create(['reg_nombre' => $request->reg_nombre]);
-            return response()->json(["pokemon" => $region], Response::HTTP_OK);
+            return response()->json(["region" => $region], Response::HTTP_OK);
         } catch (Exception $e) {
             return response()->json(["error" => $e->getMessage()], Response::HTTP_BAD_REQUEST);
         }
@@ -21,7 +21,7 @@ class RegionRepository
     public function buscarRegion($request)
     {
         try {
-            $region = Region::where('reg_nombre', $request->reg_nombre)->first();
+            $region = Region::where('reg_nombre', $request->region)->first();
             if(!$region){
                 throw new Exception("no existe la región!");
             }
