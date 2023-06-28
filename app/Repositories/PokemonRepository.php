@@ -4,7 +4,7 @@ namespace App\Repositories;
 
 use App\Models\Pokemon;
 use App\Models\Region;
-
+use App\Services\PokemonService;
 use Exception;
 use Illuminate\Http\Response;
 
@@ -14,9 +14,11 @@ class PokemonRepository
     {
         try {
 
+            $id_region = Region::where('reg_nombre', $request->region)->first();
 
-            $region = new RegionRepository;
-            $id_region = $region->buscarRegion($request);
+
+//            $region = new RegionRepository;
+//            $id_region = $region->buscarRegion($request);
 
             $pokemon = new Pokemon();
             $pokemon->nombre = $request->nombre;
@@ -33,7 +35,10 @@ class PokemonRepository
 
     public function listarPokemones($request)
     {
-        $pokemon = Pokemon::all();
+       // $pokemon = Pokemon::all();
+
+        $resultado= new PokemonService;
+        $pokemon= $resultado->ListadoPokemones();
         return response()->json(["pokemon" => $pokemon], Response::HTTP_OK);
     }
 
