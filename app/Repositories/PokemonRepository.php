@@ -7,7 +7,9 @@ use App\Models\Region;
 use App\Services\PokemonService;
 use Exception;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
+
 class PokemonRepository
 {
     public function registrarPokemon($request)
@@ -66,9 +68,22 @@ class PokemonRepository
 
     public function verPokemon($request)
     {
-        $pokemon = Pokemon::where('id', $request->id)
-            ->with('region')
-            ->first();
+
+
+        $pokemon = Cache::rememberForever('pokemon_' . $request->id, function () use ($request) {
+            return Pokemon::where('id', $request->id)
+                ->with('region')
+                ->first();
+        });
+
+        // $pokemon= Cache::get('pokemon_12');
+
+
+        //  $pokemon = Pokemon::where('id', $request->id)
+        //      ->with('region')
+        //      ->first();
+
+
         return response()->json(["pokemon" => $pokemon], Response::HTTP_OK);
     }
 }

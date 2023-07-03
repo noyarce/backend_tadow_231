@@ -43,7 +43,7 @@ class PokemonController extends Controller
     public function verPokemon(Request $request)
     {
 
-        return $this->pokemonRepository->listarPokemones($request);
+        return $this->pokemonRepository->verPokemon($request);
     }
 
     public function dumpPokemones()
