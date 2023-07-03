@@ -19,7 +19,7 @@ class PokemonRequest extends FormRequest
         return [
             "nombre" => "required|unique:pokemon|string",
             "foto" => "nullable|max:50",
-            "region" => "required|exists:regions,reg_nombre",
+           // "region" => "required|exists:regions,reg_nombre",
         ];
     }
 

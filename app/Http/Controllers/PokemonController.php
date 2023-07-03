@@ -46,7 +46,10 @@ class PokemonController extends Controller
         return $this->pokemonRepository->listarPokemones($request);
     }
 
-
+    public function dumpPokemones()
+    {
+        return $this->pokemonRepository->dumpPokemones();
+    }
 
     public function registrarRegion(Request $request)
     {

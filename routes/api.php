@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 | routes are loaded by the RouteServiceProvider within a group which
 | is assigned the "api" middleware group. Enjoy building your API!
 |
-*/ 
+*/
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
@@ -21,13 +21,12 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::prefix('/pokemon')->group(function () use ($router) {
     $router->post('registrar', [PokemonController::class, 'createPokemon']);
-    $router->get('listar',[PokemonController::class, 'listarPokemones']);
-        $router->get('ver',[PokemonController::class, 'verPokemon']);
-
+    $router->get('listar', [PokemonController::class, 'listarPokemones']);
+    $router->get('ver', [PokemonController::class, 'verPokemon']);
+    $router->get('dump', [PokemonController::class, 'dumpPokemones']);
 });
 
 Route::prefix('/region')->group(function () use ($router) {
     $router->post('registrar', [PokemonController::class, 'registrarRegion']);
-    $router->get('listar',[PokemonController::class, 'listarPokemones']);
-
+    $router->get('listar', [PokemonController::class, 'listarPokemones']);
 });

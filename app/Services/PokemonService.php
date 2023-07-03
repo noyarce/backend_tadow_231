@@ -8,7 +8,7 @@ class PokemonService
 {
     public function ListadoPokemones()
     {
-        $url = "https://pokeapi.co/api/v2/pokemon?limit=25000";
+        $url = "https://pokeapi.co/api/v2/pokemon?limit=1300";
         $response = Http::get($url);
 
         return json_decode($response);

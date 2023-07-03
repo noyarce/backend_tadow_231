@@ -5,6 +5,7 @@ namespace App\Repositories;
 use App\Models\Region;
 use Exception;
 use Illuminate\Http\Response;
+use stdClass;
 
 class RegionRepository
 {
@@ -22,8 +23,8 @@ class RegionRepository
     {
         try {
             $region = Region::where('reg_nombre', $request->region)->first();
-            if(!$region){
-                throw new Exception("no existe la región!");
+            if (!$region) {
+                $region = Region::create(['reg_nombre' => $request->region]);
             }
             return $region;
         } catch (Exception $e) {
